@@ -7,12 +7,28 @@ Logs.allow({
 
 if(Meteor.isServer){
   Meteor.methods({
-    addLog: function(collectionAttributes){
-       var log = _.extend(collectionAttributes, {
-          uId: Meteor.userId(),
-          date: new Date()
-       });
-       Logs.insert(log);
+    addLog: function(note_id, content){
+       var noteDetails = Notes.findOne({_id: note_id});
+       if(noteDetails){
+         var existingContent = noteDetails.content;
+         var numberOfWordsExistingContent = Contributions.countWords(existingContent);
+         var numberOfWordsUpdatedContent = Contributions.countWords(content);
+         var difference = numberOfWordsUpdatedContent - numberOfWordsExistingContent;
+         // console.log(numberOfWordsExistingContent);
+         // console.log(numberOfWordsUpdatedContent);
+         if(difference){
+           var attributes = {};
+           attributes.noteId = note_id;
+           attributes.wordsWritten = difference;
+           var log = _.extend(attributes, {
+              uId: Meteor.userId(),
+              date: new Date()
+           });
+           Logs.insert(log);
+         }
+       }else{
+         console.log('We cannot find a note with this _id!');
+       }
      },
 
      removeLog: function(id){
