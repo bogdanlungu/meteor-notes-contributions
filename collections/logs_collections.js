@@ -11,12 +11,12 @@ if(Meteor.isServer){
        var noteDetails = Notes.findOne({_id: note_id});
        if(noteDetails){
          var existingContent = noteDetails.content;
-         var numberOfWordsExistingContent = Contributions.countWords(existingContent);
+         var numberOfWordsExistingContent = Contributions.countWords(TagStripper.strip(existingContent));
          var numberOfWordsUpdatedContent = Contributions.countWords(content);
          var difference = numberOfWordsUpdatedContent - numberOfWordsExistingContent;
          // console.log(numberOfWordsExistingContent);
          // console.log(numberOfWordsUpdatedContent);
-         if(difference){
+         if(parseInt(difference) > 0){
            var attributes = {};
            attributes.noteId = note_id;
            attributes.wordsWritten = difference;
@@ -24,7 +24,18 @@ if(Meteor.isServer){
               uId: Meteor.userId(),
               date: new Date()
            });
-           Logs.insert(log);
+
+           var startToday = Contributions.startToday();
+           var endToday = Contributions.endToday();
+           var checkLog = Logs.findOne({$and: [{date: {$gt: startToday, $lt: endToday}}, {noteId: note_id}]});
+           if(checkLog){
+             var newLog = {};
+             newLog.wordsWritten = checkLog.wordsWritten + difference;
+             Logs.update({uId:Meteor.userId(), _id: checkLog._id}, {$set: newLog});
+           }else{
+              Logs.insert(log);
+           }
+
          }
        }else{
          console.log('We cannot find a note with this _id!');
