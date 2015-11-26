@@ -1,0 +1,9 @@
+<template name="calendar">
+  <h2>Calendar</h2>
+  <p>Below you have the daily contributions you made to your notes:</p>
+  <ul>
+      {{#each previous}}
+         <li><strong>{{written}}</strong> words written on {{this}}</li>
+      {{/each}}
+  </ul>
+</template>

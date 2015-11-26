@@ -28,5 +28,15 @@ Contributions = {
     dateMidnight.setMinutes(59);
     dateMidnight.setSeconds(59);
     return dateMidnight;
+  },
+
+  goBack: function(days){
+    // go back with a number of days
+    var theDate = new Date();
+    theDate.setSeconds(0);
+    theDate.setHours(0);
+    theDate.setMinutes(0);
+    theDate.setDate(theDate.getDate() - days);
+    return theDate;
   }
 };
