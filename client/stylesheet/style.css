@@ -1,0 +1,19 @@
+/* Styles */
+.rectangle1{
+  fill: #CCCCCC;
+}
+
+a svg:hover .rectangle1{
+  fill: #111;
+}
+
+a svg .rectangle1{
+  transition: 200ms;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: 200ms;
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+.calendarTable table, th, td{
+  padding: -5px;
+}
