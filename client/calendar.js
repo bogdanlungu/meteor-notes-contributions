@@ -31,7 +31,8 @@ Template.calendar.helpers({
   weeks: function(){
     var weeks = [];
     var weekNo = 52;
-    var translate = 15;
+    var translate = 780;
+    var theDay = Contributions.goBack(0);
 
     for(var i = 0; i < 365; i++){
       var theDate = Contributions.goBack(i);
@@ -39,9 +40,12 @@ Template.calendar.helpers({
         var obj = {};
         obj.translate = translate;
         obj.weekNo = weekNo;
+        obj.day = theDate;
+        obj.dayBack = i;
+        obj.theDate = theDate;
 
         weeks.push(obj);
-        translate = translate + 15;
+        translate = translate - 15;
         weekNo = weekNo - 1;
       }
     }
@@ -50,19 +54,49 @@ Template.calendar.helpers({
 
   days: function(){
     var array = [];
+    var currentDate = new Date();
+    var oldestDate = Contributions.goBack(365);
     var yCoord = 0;
+    var currentDate = Contributions.goBack(0);
+    var sunday = this.theDate;
     for(var i = 0; i < 7; i++){
       var obj = {};
+      var nextDay = Contributions.goForward(sunday, i);
+      switch(nextDay.getDay()){
+        case 0:
+          yCoord = 0;
+        break;
+        case 1:
+          yCoord = 15;
+        break;
+        case 2:
+          yCoord = 30;
+        break;
+        case 3:
+          yCoord = 45;
+        break;
+        case 4:
+          yCoord = 60;
+        break;
+        case 5:
+          yCoord = 75;
+        break;
+        case 6:
+          yCoord = 90;
+        break;
+      }
+      obj.weekDay = nextDay;
       obj.yCoord = yCoord;
-      array.push(obj);
-      yCoord = yCoord + 15;
+      if((nextDay <= currentDate) && (nextDay >= oldestDate)){
+        array.push(obj);
+      }
     }
     return array;
   },
 
   written: function(){
-    var dateMorning = this;
-    var dateMidnight = new Date(this);
+    var dateMorning = this.weekDay;
+    var dateMidnight = new Date(this.weekDay);
     dateMidnight.setHours(23);
     dateMidnight.setMinutes(59);
     dateMidnight.setSeconds(59);

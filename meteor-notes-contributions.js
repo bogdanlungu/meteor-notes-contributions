@@ -38,5 +38,14 @@ Contributions = {
     theDate.setMinutes(0);
     theDate.setDate(theDate.getDate() - days);
     return theDate;
+  },
+
+  goForward: function(date, days){
+    var theDate = new Date(date);
+    theDate.setSeconds(0);
+    theDate.setHours(0);
+    theDate.setMinutes(0);
+    theDate.setDate(theDate.getDate() + days);
+    return theDate;
   }
 };

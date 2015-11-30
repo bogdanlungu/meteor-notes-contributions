@@ -1,6 +1,6 @@
 <template name="calendar">
   <h2>Calendar</h2>
-
+  <p>{{dayPlus}}</p>
   <!-- SVG table prototype-->
   <svg width="721" height="110" class="calendar">
   <g transform="translate(20, 20)">
@@ -37,12 +37,16 @@
   </ul>
   -->
 
-  <svg width="800" height="110" class="calendar">
+  <svg width="900" height="130" class="calendar">
      <g transform="translate(20, 20)">
        {{#each weeks}}
          <g transform="translate({{this.translate}}, 0)">
              {{#each days}}
-                <rect class="day" width="12" height="12" y="{{this.yCoord}}" fill="#eeeeee" data-count="0" data-date="0000-00-00"/>
+                {{#if written}}
+                  <rect class="day" width="12" height="12" y="{{this.yCoord}}" fill="#33CC33" data-count="0" data-date="0000-00-00"/>
+                {{else}}
+                  <rect class="day" width="12" height="12" y="{{this.yCoord}}" fill="#eeeeee" data-count="0" data-date="0000-00-00"/>
+                {{/if}}
              {{/each}}
          </g>
        {{/each}}
@@ -51,7 +55,12 @@
 
   <ul>
       {{#each weeks}}
-         <li>written on {{this.weekNo}} and the translate is {{this.translate}}</li>
+        <li>written on {{this.weekNo}} and the translate is {{this.translate}}</li>
+             <ul>
+               {{#each days}}
+                  <li>{{this.yCoord}}, weekDay: {{this.weekDay}}, <strong>Words written: </strong>{{written}}</li>
+               {{/each}}
+             </ul>
       {{/each}}
   </ul>
 
