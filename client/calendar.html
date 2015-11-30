@@ -1,90 +1,61 @@
 <template name="calendar">
   <h2>Calendar</h2>
+
+  <!-- SVG table prototype-->
+  <svg width="721" height="110" class="calendar">
+  <g transform="translate(20, 20)">
+      <g transform="translate(0, 0)">
+          <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-words="0"/>
+      </g>
+      <g transform="translate(13, 0)">
+          <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-words="0"/>
+          <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-words="0"/>
+          <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-words="0"/>
+          <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-words="0"/>
+          <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-words="0"/>
+          <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-words="0"/>
+          <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-words="0"/>
+      </g>
+      <g transform="translate(26, 0)">
+          <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-words="0"/>
+          <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-words="0"/>
+          <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-words="0"/>
+          <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-words="0"/>
+          <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-words="0"/>
+          <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-words="0"/>
+          <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-words="0"/>
+      </g>
+  </g>
+</svg>
+
+  <p>Below you have the daily contributions you made to your notes:</p>
+  <!--
+  <ul>
+      {{#each previous}}
+         <li><strong>{{written}}</strong> words written on {{this}}</li>
+      {{/each}}
+  </ul>
+  -->
+
+  <svg width="800" height="110" class="calendar">
+     <g transform="translate(20, 20)">
+       {{#each weeks}}
+         <g transform="translate({{this.translate}}, 0)">
+             {{#each days}}
+                <rect class="day" width="12" height="12" y="{{this.yCoord}}" fill="#eeeeee" data-count="0" data-date="0000-00-00"/>
+             {{/each}}
+         </g>
+       {{/each}}
+     </g>
+  </svg>
+
+  <ul>
+      {{#each weeks}}
+         <li>written on {{this.weekNo}} and the translate is {{this.translate}}</li>
+      {{/each}}
+  </ul>
+
     <table class="calendarTable">
-      <tr>
-        <td>
-          <a href="#">
-            <svg width="12" height="12">
-             <rect width="12" height="12" class="rectangle1" />
-            </svg></a>
-        </td>
-        <td>
-          <a href="#">
-            <svg width="12" height="12">
-             <rect width="12" height="12" class="rectangle1" />
-            </svg></a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="#">
-            <svg width="12" height="12">
-             <rect width="12" height="12" class="rectangle1" />
-            </svg></a>
-        </td>
-        <td>
-          <a href="#">
-            <svg width="12" height="12">
-             <rect width="12" height="12" class="rectangle1" />
-            </svg></a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="#">
-            <svg width="12" height="12">
-             <rect width="12" height="12" class="rectangle1" />
-            </svg></a>
-        </td>
-        <td>
-          <a href="#">
-            <svg width="12" height="12">
-             <rect width="12" height="12" class="rectangle1" />
-            </svg></a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="#">
-            <svg width="12" height="12">
-             <rect width="12" height="12" class="rectangle1" />
-            </svg></a>
-        </td>
-        <td>
-          <a href="#">
-            <svg width="12" height="12">
-             <rect width="12" height="12" class="rectangle1" />
-            </svg></a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="#">
-            <svg width="12" height="12">
-             <rect width="12" height="12" class="rectangle1" />
-            </svg></a>
-        </td>
-        <td>
-          <a href="#">
-            <svg width="12" height="12">
-             <rect width="12" height="12" class="rectangle1" />
-            </svg></a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="#">
-            <svg width="12" height="12">
-             <rect width="12" height="12" class="rectangle1" />
-            </svg></a>
-        </td>
-        <td>
-          <a href="#">
-            <svg width="12" height="12">
-             <rect width="12" height="12" class="rectangle1" />
-            </svg></a>
-        </td>
-      </tr>
       <tr>
         <td>
           <a href="#">
@@ -101,10 +72,4 @@
       </tr>
     </table>
 
-  <p>Below you have the daily contributions you made to your notes:</p>
-  <ul>
-      {{#each previous}}
-         <li><strong>{{written}}</strong> words written on {{this}}</li>
-      {{/each}}
-  </ul>
 </template>

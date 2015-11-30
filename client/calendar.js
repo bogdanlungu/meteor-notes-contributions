@@ -28,6 +28,38 @@ Template.calendar.helpers({
     return dateArray;
   },
 
+  weeks: function(){
+    var weeks = [];
+    var weekNo = 52;
+    var translate = 15;
+
+    for(var i = 0; i < 365; i++){
+      var theDate = Contributions.goBack(i);
+      if(theDate.getDay() == 0){
+        var obj = {};
+        obj.translate = translate;
+        obj.weekNo = weekNo;
+
+        weeks.push(obj);
+        translate = translate + 15;
+        weekNo = weekNo - 1;
+      }
+    }
+    return weeks;
+  },
+
+  days: function(){
+    var array = [];
+    var yCoord = 0;
+    for(var i = 0; i < 7; i++){
+      var obj = {};
+      obj.yCoord = yCoord;
+      array.push(obj);
+      yCoord = yCoord + 15;
+    }
+    return array;
+  },
+
   written: function(){
     var dateMorning = this;
     var dateMidnight = new Date(this);
