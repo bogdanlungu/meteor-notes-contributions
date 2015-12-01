@@ -28,6 +28,10 @@
   </g>
 </svg>
 
+<div id="hoverDetails">
+    <p>MouseX: {{mouseX}} MouseY: {{mouseY}}</p>
+</div>
+
   <p>Below you have the daily contributions you made to your notes:</p>
   <!--
   <ul>
@@ -43,9 +47,9 @@
          <g transform="translate({{this.translate}}, 0)">
              {{#each days}}
                 {{#if written}}
-                  <rect class="day" width="12" height="12" y="{{this.yCoord}}" fill="#33CC33" data-count="0" data-date="0000-00-00"/>
+                  <rect class="day" width="12" height="12" y="{{this.yCoord}}" fill="#33CC33" data-count="22" data-date="{{this.weekDay}}"/>
                 {{else}}
-                  <rect class="day" width="12" height="12" y="{{this.yCoord}}" fill="#eeeeee" data-count="0" data-date="0000-00-00"/>
+                  <rect class="day" width="12" height="12" y="{{this.yCoord}}" fill="#eeeeee" data-count="21" data-date="{{this.weekDay}}"/>
                 {{/if}}
              {{/each}}
          </g>

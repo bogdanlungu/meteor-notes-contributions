@@ -107,5 +107,42 @@ Template.calendar.helpers({
       words = words + row.wordsWritten;
     });
     return words;
+  },
+
+  mouseX: function(){
+    return Session.get("mouseX");
+  },
+
+  mouseY: function(){
+    return Session.get("mouseY");
+  }
+});
+
+Template.calendar.events({
+
+  'mouseover .calendar': function(e){
+      if(e.target.localName == "rect"){
+        Meteor.setTimeout(function(){
+          e.target.attributes['class'].value = "dayHover";
+          var calculateX = e.clientX - 50;
+          var calculateY = e.clientY - 50;
+          calculateX = calculateX + "px";
+          calculateY = calculateY + "px";
+          $('#hoverDetails').css("left", calculateX);
+          $('#hoverDetails').css("top", calculateY);
+          $('#hoverDetails').show();
+          Session.set("mouseX", e.pageX);
+          Session.set("mouseY", e.pageY);
+        }, 0);
+      }
+  },
+
+  'mouseout .calendar': function(e){
+      if(e.target.localName == "rect"){
+        Meteor.setTimeout(function(){
+          e.target.attributes['class'].value = "day";
+          $('#hoverDetails').hide();
+        }, 0);
+      }
   }
 });

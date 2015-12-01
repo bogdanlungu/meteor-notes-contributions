@@ -17,3 +17,23 @@ a svg .rectangle1{
 .calendarTable table, th, td{
   padding: -5px;
 }
+
+.dayHover{
+  fill: #111;
+  transition: 300ms;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: 300ms;
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+#hoverDetails{
+  position: fixed;
+  border-radius: 5px;
+  padding: 5px;
+  width: 200px;
+  height: 30px;
+  border: solid 1px #ccc;
+  background-color: #ccc;
+  z-index: 999;
+  display: none;
+}
