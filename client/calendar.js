@@ -52,6 +52,28 @@ Template.calendar.helpers({
     return weeks;
   },
 
+  months: function(){
+    var months = [];
+    var checkMonths = [];
+    var monthNo = 12;
+    var translate = 750;
+    for(var i = 0; i < 365; i++){
+      var theDate = Contributions.goBack(i);
+      var month = theDate.getMonth();
+      var day = theDate.getDate();
+      month = Contributions.month(month);
+      if((day > 15) && (checkMonths.indexOf(month) == -1)){
+        var obj = {};
+        obj.month = month;
+        obj.translate = translate;
+        checkMonths.push(month);
+        months.push(obj);
+        translate = translate - 65;
+      }
+    }
+    return months;
+  },
+
   days: function(){
     var array = [];
     var currentDate = new Date();

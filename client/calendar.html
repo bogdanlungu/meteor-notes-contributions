@@ -29,6 +29,18 @@
              {{/each}}
          </g>
        {{/each}}
+       
+       {{#each months}}
+         <text x="{{this.translate}}" y="-5" class="month">{{this.month}}</text>
+       {{/each}}
+
+      <text text-anchor="middle" class="weekDay" dx="0" dy="10">S</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="25">M</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="40">T</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="55">W</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="70">T</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="85">F</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="100">S</text>
      </g>
   </svg>
 
