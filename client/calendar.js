@@ -86,6 +86,13 @@ Template.calendar.helpers({
         break;
       }
       obj.weekDay = nextDay;
+      var day = nextDay.getDate();
+      var month = Contributions.month(nextDay.getMonth());
+      var year = nextDay.getFullYear();
+      var dayOfWeek = Contributions.dayOfWeek(nextDay.getDay());
+      var getTheDate = nextDay.getFullYear();
+      var theFinalDate = dayOfWeek + " "+month+" "+day+" "+year;
+      obj.displayedDate = theFinalDate;
       obj.yCoord = yCoord;
       if((nextDay <= currentDate) && (nextDay >= oldestDate)){
         array.push(obj);
@@ -109,12 +116,12 @@ Template.calendar.helpers({
     return words;
   },
 
-  mouseX: function(){
-    return Session.get("mouseX");
+  writtenWords: function(){
+    return Session.get("writtenWords");
   },
 
-  mouseY: function(){
-    return Session.get("mouseY");
+  theDate: function(){
+    return Session.get("theDate");
   }
 });
 
@@ -124,6 +131,7 @@ Template.calendar.events({
       if(e.target.localName == "rect"){
         Meteor.setTimeout(function(){
           e.target.attributes['class'].value = "dayHover";
+          e.target.attributes['data-written'];
           var calculateX = e.clientX - 50;
           var calculateY = e.clientY - 50;
           calculateX = calculateX + "px";
@@ -131,8 +139,8 @@ Template.calendar.events({
           $('#hoverDetails').css("left", calculateX);
           $('#hoverDetails').css("top", calculateY);
           $('#hoverDetails').show();
-          Session.set("mouseX", e.pageX);
-          Session.set("mouseY", e.pageY);
+          Session.set("writtenWords", e.target.attributes['data-written'].value);
+          Session.set("theDate", e.target.attributes['data-date'].value);
         }, 0);
       }
   },

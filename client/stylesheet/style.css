@@ -29,11 +29,24 @@ a svg .rectangle1{
 #hoverDetails{
   position: fixed;
   border-radius: 5px;
-  padding: 5px;
-  width: 200px;
-  height: 30px;
+  padding: 4px;
+  width: 210px;
+  height: 27px;
   border: solid 1px #ccc;
-  background-color: #ccc;
+  background-color: #202020;
   z-index: 999;
   display: none;
+}
+
+#hoverDetails p{
+  color: #fff;
+  font-size: 0.8em;
+}
+
+.calendar{
+  border: solid 1px #ccc;
+}
+
+.month{
+  font-size: 0.8em;
 }
