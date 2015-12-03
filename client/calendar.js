@@ -124,6 +124,13 @@ Template.calendar.helpers({
   },
 
   written: function(){
+    // set the colors
+    var color = "#ccc";
+    var obj = {};
+    var upTo25 = "#d6e685";
+    var upTo50 = "#8cc665";
+    var upTo75 = "#44a340";
+    var upTo100 = "#1e6823";
     var dateMorning = this.weekDay;
     var dateMidnight = new Date(this.weekDay);
     dateMidnight.setHours(23);
@@ -135,7 +142,25 @@ Template.calendar.helpers({
     logDetails.forEach(function(row){
       words = words + row.wordsWritten;
     });
-    return words;
+    var theMaxContribution = parseFloat(Session.get("theMaxContribution"));
+    var percentage = parseFloat((words / theMaxContribution) * 100);
+    switch(true){
+      case (percentage < 25):
+        color = upTo25;
+      break;
+      case ((percentage >= 25) && (percentage < 50)):
+        color = upTo50;
+      break;
+      case ((percentage >= 50) && (percentage < 75)):
+        color = upTo75;
+      break;
+      case ((percentage >= 75) && (percentage <= 100)):
+        color = upTo100;
+      break;
+    }
+    obj.words = words;
+    obj.theColor = color;
+    return obj;
   },
 
   writtenWords: function(){
@@ -144,6 +169,19 @@ Template.calendar.helpers({
 
   theDate: function(){
     return Session.get("theDate");
+  },
+
+  theMax: function(){
+    var theDetails = Logs.findOne({}, {sort:{wordsWritten: -1}});
+    return Session.get("theMaxContribution");
+    // return theDetails.wordsWritten;
+  }
+});
+
+Template.calendar.onRendered(function(){
+  var theDetails = Logs.findOne({}, {sort:{wordsWritten: -1}});
+  if(theDetails.wordsWritten){
+    Session.set("theMaxContribution", theDetails.wordsWritten);
   }
 });
 

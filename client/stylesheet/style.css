@@ -45,6 +45,7 @@ a svg .rectangle1{
 
 .calendar{
   border: solid 1px #ccc;
+  margin: auto;
 }
 
 .month{
@@ -53,4 +54,8 @@ a svg .rectangle1{
 
 .weekDay{
   font-size: 0.8em;
+}
+
+.center{
+  text-align: center;
 }
