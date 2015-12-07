@@ -154,7 +154,7 @@ Template.calendar.helpers({
       case ((percentage >= 50) && (percentage < 75)):
         color = upTo75;
       break;
-      case ((percentage >= 75) && (percentage <= 100)):
+      case (percentage >= 75):
         color = upTo100;
       break;
     }
@@ -172,9 +172,7 @@ Template.calendar.helpers({
   },
 
   theMax: function(){
-    var theDetails = Logs.findOne({}, {sort:{wordsWritten: -1}});
     return Session.get("theMaxContribution");
-    // return theDetails.wordsWritten;
   }
 });
 
