@@ -59,3 +59,27 @@ a svg .rectangle1{
 .center{
   text-align: center;
 }
+
+#calendarDesktop{
+  display: none;
+}
+
+#calendarMobile{
+  display: none;
+}
+
+@media (min-width: 995px) {
+  #calendarDesktop {
+    display: block;
+  }
+}
+
+@media (max-width: 995px) {
+  #calendarDesktop {
+    display: none;
+  }
+
+  #calendarMobile {
+    display: block;
+  }
+}

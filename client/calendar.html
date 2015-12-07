@@ -1,5 +1,5 @@
 <template name="calendar">
-<div class="row center">
+<div class="row center" id="calendarDesktop">
    <!-- Calendar tooltip -->
    <div id="hoverDetails">
      <p><strong>{{writtenWords}}</strong> words written on {{theDate}}</p>
@@ -19,6 +19,36 @@
        {{/each}}
 
        {{#each months}}
+         <text x="{{this.translate}}" y="-5" class="month">{{this.month}}</text>
+       {{/each}}
+
+      <text text-anchor="middle" class="weekDay" dx="0" dy="10">S</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="25">M</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="40">T</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="55">W</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="70">T</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="85">F</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="100">S</text>
+     </g>
+  </svg>
+</div>
+
+<div class="row center" id="calendarMobile">
+  <svg width="300" height="132" class="calendar">
+     <g transform="translate(20, 20)">
+       {{#each weeksMobile}}
+         <g transform="translate({{this.translate}}, 0)">
+             {{#each days}}
+                {{#if written.words}}
+                  <rect class="day" width="14" height="14" y="{{this.yCoord}}" fill="{{written.theColor}}" data-written="{{written.words}}" data-date="{{this.displayedDate}}"/>
+                {{else}}
+                  <rect class="day" width="14" height="14" y="{{this.yCoord}}" fill="#eeeeee" data-written="{{written.words}}" data-date="{{this.displayedDate}}"/>
+                {{/if}}
+             {{/each}}
+         </g>
+       {{/each}}
+
+       {{#each monthsMobile}}
          <text x="{{this.translate}}" y="-5" class="month">{{this.month}}</text>
        {{/each}}
 
