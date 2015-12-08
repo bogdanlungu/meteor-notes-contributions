@@ -114,5 +114,47 @@ Contributions = {
         return "Dec";
       break;
     }
+  },
+
+  calculateMonths: function(totalDays, translate){
+    var months = [];
+    var checkMonths = [];
+    for(var i = 0; i < totalDays; i++){
+      var theDate = this.goBack(i);
+      var month = theDate.getMonth();
+      var day = theDate.getDate();
+      month = this.month(month);
+      if((day > 15) && (checkMonths.indexOf(month) == -1)){
+        var obj = {};
+        obj.month = month;
+        obj.translate = translate;
+        checkMonths.push(month);
+        months.push(obj);
+        translate = translate - 65;
+      }
+    }
+    return months;
+  },
+
+  calculateWeeks: function(weekNo, totalDays, translate){
+    var weeks = [];
+    var theDay = this.goBack(0);
+
+    for(var i = 0; i < totalDays; i++){
+      var theDate = this.goBack(i);
+      if(theDate.getDay() == 0){
+        var obj = {};
+        obj.translate = translate;
+        obj.weekNo = weekNo;
+        obj.day = theDate;
+        obj.dayBack = i;
+        obj.theDate = theDate;
+
+        weeks.push(obj);
+        translate = translate - 15;
+        weekNo = weekNo - 1;
+      }
+    }
+    return weeks;
   }
 };

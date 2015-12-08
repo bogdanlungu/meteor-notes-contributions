@@ -29,100 +29,29 @@ Template.calendar.helpers({
   },
 
   weeks: function(){
-    var weeks = [];
     var weekNo = 52;
     var translate = 780;
     var totalDays = 365;
-
-    var theDay = Contributions.goBack(0);
-
-    for(var i = 0; i < totalDays; i++){
-      var theDate = Contributions.goBack(i);
-      if(theDate.getDay() == 0){
-        var obj = {};
-        obj.translate = translate;
-        obj.weekNo = weekNo;
-        obj.day = theDate;
-        obj.dayBack = i;
-        obj.theDate = theDate;
-
-        weeks.push(obj);
-        translate = translate - 15;
-        weekNo = weekNo - 1;
-      }
-    }
-    return weeks;
+    return Contributions.calculateWeeks(weekNo, totalDays, translate);
   },
 
   weeksMobile: function(){
-    var weeks = [];
     var weekNo = 16;
     var translate = 240;
     var totalDays = 112;
-
-    var theDay = Contributions.goBack(0);
-
-    for(var i = 0; i < totalDays; i++){
-      var theDate = Contributions.goBack(i);
-      if(theDate.getDay() == 0){
-        var obj = {};
-        obj.translate = translate;
-        obj.weekNo = weekNo;
-        obj.day = theDate;
-        obj.dayBack = i;
-        obj.theDate = theDate;
-
-        weeks.push(obj);
-        translate = translate - 15;
-        weekNo = weekNo - 1;
-      }
-    }
-    return weeks;
+    return Contributions.calculateWeeks(weekNo, totalDays, translate);
   },
 
   months: function(){
-    var months = [];
-    var checkMonths = [];
-    var monthNo = 12;
+    var totalDays = 365;
     var translate = 750;
-    for(var i = 0; i < 365; i++){
-      var theDate = Contributions.goBack(i);
-      var month = theDate.getMonth();
-      var day = theDate.getDate();
-      month = Contributions.month(month);
-      if((day > 15) && (checkMonths.indexOf(month) == -1)){
-        var obj = {};
-        obj.month = month;
-        obj.translate = translate;
-        checkMonths.push(month);
-        months.push(obj);
-        translate = translate - 65;
-      }
-    }
-    return months;
+    return Contributions.calculateMonths(totalDays, translate);
   },
 
   monthsMobile: function(){
-    var months = [];
-    var checkMonths = [];
-    var monthNo = 12;
     var totalDays = 112;
     var translate = 210;
-    for(var i = 0; i < totalDays; i++){
-      var theDate = Contributions.goBack(i);
-      var month = theDate.getMonth();
-      var day = theDate.getDate();
-      month = Contributions.month(month);
-      if((day > 15) && (checkMonths.indexOf(month) == -1)){
-        var obj = {};
-        obj.month = month;
-        obj.translate = translate;
-        checkMonths.push(month);
-        months.push(obj);
-        translate = translate - 65;
-      }
-    }
-    return months;
+    return Contributions.calculateMonths(totalDays, translate);
   },
 
   days: function(){
