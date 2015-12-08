@@ -13,7 +13,7 @@ Package.onUse(function(api) {
   api.imply('iron:controller', ['client','server']);
   api.addFiles(['meteor-notes-contributions.js', 'common/router.js'], ['client', 'server']);
   api.addFiles(['collections/logs_collections.js', 'server/publications.js', 'server/permissions.js'],['client','server']);
-  api.addFiles(['client/calendar.html', 'client/calendar.js', 'client/stylesheet/style.css'], 'client');
+  api.addFiles(['client/calendar.html', 'client/note-contributions.html', 'client/calendar.js', 'client/note-contributions.js', 'client/stylesheet/style.css'], 'client');
   if (api.export){
     api.export('Contributions');
     api.export('Logs');

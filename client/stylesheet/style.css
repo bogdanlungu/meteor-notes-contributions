@@ -83,3 +83,25 @@ a svg .rectangle1{
     display: block;
   }
 }
+
+.contributions{
+  border: solid 1px #ccc;
+  margin: auto;
+}
+
+#hoverDetailsContributions{
+  position: fixed;
+  border-radius: 5px;
+  padding: 4px;
+  width: 210px;
+  height: 27px;
+  border: solid 1px #ccc;
+  background-color: #202020;
+  z-index: 999;
+  display: none;
+}
+
+#hoverDetailsContributions p{
+  color: #fff;
+  font-size: 0.8em;
+}
