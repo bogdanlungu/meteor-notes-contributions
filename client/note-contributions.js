@@ -30,6 +30,15 @@ Template.noteContributions.helpers({
     return Session.get("writtenWords");
   },
 
+  checkContributions: function(){
+    var checkContributions = Logs.find({noteId: Router.current().params._id});
+    if(checkContributions){
+      return true;
+    }else{
+      return false;
+    }
+  },
+
   written: function(){
     // set the colors
     var color = "#ccc";
@@ -112,7 +121,9 @@ Template.noteContributions.events({
 
 Template.noteContributions.onRendered(function(){
   var theDetails = Logs.findOne({noteId: Router.current().params._id}, {sort:{wordsWritten: -1}});
-  if(theDetails.wordsWritten){
-    Session.set("theMaxContribution", theDetails.wordsWritten);
+  if(theDetails){
+    if(theDetails.wordsWritten){
+      Session.set("theMaxContribution", theDetails.wordsWritten);
+    }
   }
 });
