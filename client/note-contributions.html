@@ -24,4 +24,30 @@
       </g>
     </svg>
   </div>
+
+  <div class="row center" id="contributionsMobile">
+    <div id="hoverDetailsContributions">
+      <p><strong>{{writtenWords}}</strong> words written on {{theDate}}</p>
+    </div>
+    <svg width="300" height="132" class="contributions">
+      <g transform="translate(20, 20)">
+
+        {{#each last12Days}}
+          <g transform="translate({{this.translate}}, 0)">
+            {{#if checkContributions}}
+              {{#if written.words}}
+                <rect class="day" width="15" height="70" y="10" fill="{{written.theColor}}" data-written="{{written.words}}" data-date="{{this.displayedDate}}"/>
+              {{else}}
+                <rect class="day" width="15" height="70" y="10" fill="#eee" data-written="{{written.words}}" data-date="{{this.displayedDate}}"/>
+              {{/if}}
+            {{else}}
+               <rect class="day" width="15" height="70" y="10" fill="#eee" data-written="{{written.words}}" data-date="{{this.displayedDate}}"/>
+            {{/if}}
+          </g>
+        {{/each}}
+
+        <line x1="0" y1="80" x2="255" y2="80" style="stroke:#ccc;stroke-width:1" />
+      </g>
+    </svg>
+  </div>
 </template>

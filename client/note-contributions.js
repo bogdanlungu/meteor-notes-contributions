@@ -22,6 +22,29 @@ Template.noteContributions.helpers({
     return lastDays;
   },
 
+  last12Days: function(){
+    var lastDays = [];
+    var translate = 240;
+    for(var i = 0; i < 13; i++){
+      var obj = {};
+      var theDate = Contributions.goBack(i);
+      var theDay = theDate.getDate();
+      var day = theDate.getDate();
+      var month = Contributions.month(theDate.getMonth());
+      var year = theDate.getFullYear();
+      var dayOfWeek = Contributions.dayOfWeek(theDate.getDay());
+      var getTheDate = theDate.getFullYear();
+      var theFinalDate = dayOfWeek + " "+month+" "+day+" "+year;
+
+      obj.displayedDate = theFinalDate;
+      obj.theDate = theDate;
+      obj.translate = translate;
+      lastDays.push(obj);
+      translate = translate - 20;
+    }
+    return lastDays;
+  },
+
   theDate: function(){
     return Session.get("theDate");
   },
