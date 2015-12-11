@@ -156,5 +156,27 @@ Contributions = {
       }
     }
     return weeks;
+  },
+
+  calculateDays: function(totalDays, translate){
+    var lastDays = [];
+    for(var i = 0; i < totalDays; i++){
+      var obj = {};
+      var theDate = this.goBack(i);
+      var theDay = theDate.getDate();
+      var day = theDate.getDate();
+      var month = this.month(theDate.getMonth());
+      var year = theDate.getFullYear();
+      var dayOfWeek = this.dayOfWeek(theDate.getDay());
+      var getTheDate = theDate.getFullYear();
+      var theFinalDate = dayOfWeek + " "+month+" "+day+" "+year;
+
+      obj.displayedDate = theFinalDate;
+      obj.theDate = theDate;
+      obj.translate = translate;
+      lastDays.push(obj);
+      translate = translate - 20;
+    }
+    return lastDays;
   }
 };

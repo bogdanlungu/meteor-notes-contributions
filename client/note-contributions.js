@@ -1,48 +1,14 @@
 Template.noteContributions.helpers({
   lastDays: function(){
-    var lastDays = [];
+    var totalDays = 40;
     var translate = 780;
-    for(var i = 0; i < 40; i++){
-      var obj = {};
-      var theDate = Contributions.goBack(i);
-      var theDay = theDate.getDate();
-      var day = theDate.getDate();
-      var month = Contributions.month(theDate.getMonth());
-      var year = theDate.getFullYear();
-      var dayOfWeek = Contributions.dayOfWeek(theDate.getDay());
-      var getTheDate = theDate.getFullYear();
-      var theFinalDate = dayOfWeek + " "+month+" "+day+" "+year;
-
-      obj.displayedDate = theFinalDate;
-      obj.theDate = theDate;
-      obj.translate = translate;
-      lastDays.push(obj);
-      translate = translate - 20;
-    }
-    return lastDays;
+    return Contributions.calculateDays(totalDays, translate);
   },
 
   last12Days: function(){
-    var lastDays = [];
+    var totalDays = 13;
     var translate = 240;
-    for(var i = 0; i < 13; i++){
-      var obj = {};
-      var theDate = Contributions.goBack(i);
-      var theDay = theDate.getDate();
-      var day = theDate.getDate();
-      var month = Contributions.month(theDate.getMonth());
-      var year = theDate.getFullYear();
-      var dayOfWeek = Contributions.dayOfWeek(theDate.getDay());
-      var getTheDate = theDate.getFullYear();
-      var theFinalDate = dayOfWeek + " "+month+" "+day+" "+year;
-
-      obj.displayedDate = theFinalDate;
-      obj.theDate = theDate;
-      obj.translate = translate;
-      lastDays.push(obj);
-      translate = translate - 20;
-    }
-    return lastDays;
+    return Contributions.calculateDays(totalDays, translate);
   },
 
   theDate: function(){
