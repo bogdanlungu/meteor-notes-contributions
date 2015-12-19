@@ -42,6 +42,19 @@ if(Meteor.isServer){
        }
      },
 
+     addFirstLog: function(note_id, content){
+       var numberOfWordsUpdatedContent = Contributions.countWords(content);
+       var attributes = {};
+       attributes.noteId = note_id;
+       attributes.wordsWritten = numberOfWordsUpdatedContent;
+       var log = _.extend(attributes, {
+          uId: Meteor.userId(),
+          date: new Date()
+       });
+
+       Logs.insert(log);
+     },
+
      removeLog: function(id){
       Logs.remove({_id: id});
      },

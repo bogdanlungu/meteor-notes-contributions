@@ -9,6 +9,14 @@ Contributions = {
     });
   },
 
+  addFirstLog: function(note_id, content){
+    Meteor.call("addFirstLog", note_id, content, function(error, result){
+      if(error){
+         console.log(error);
+      }else{ }
+    });
+  },
+
   countWords: function(string){
     var countWords = string.split(" ").length;
     return countWords;
