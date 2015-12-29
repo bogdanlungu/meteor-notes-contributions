@@ -11,6 +11,12 @@ Template.noteContributions.helpers({
     return Contributions.calculateDays(totalDays, translate);
   },
 
+  last7Days: function(){
+    var totalDays = 8;
+    var translate = 137;
+    return Contributions.calculateDays(totalDays, translate);
+  },
+
   theDate: function(){
     return Session.get("theDate");
   },

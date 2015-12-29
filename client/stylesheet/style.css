@@ -114,6 +114,10 @@ a svg .rectangle1{
   display: none;
 }
 
+#contributionsSmallMobile{
+  display: none;
+}
+
 @media (min-width: 995px) {
   #contributionsDesktop {
     display: block;
@@ -126,6 +130,20 @@ a svg .rectangle1{
   }
 
   #contributionsMobile {
+    display: block;
+  }
+}
+
+@media (max-width: 360px) {
+  #contributionsDesktop {
+    display: none;
+  }
+
+  #contributionsMobile {
+    display: none;
+  }
+
+  #contributionsSmallMobile{
     display: block;
   }
 }

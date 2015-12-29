@@ -179,6 +179,7 @@ Contributions = {
       var getTheDate = theDate.getFullYear();
       var theFinalDate = dayOfWeek + " "+month+" "+day+" "+year;
 
+      obj.theDay = day;
       obj.displayedDate = theFinalDate;
       obj.theDate = theDate;
       obj.translate = translate;
