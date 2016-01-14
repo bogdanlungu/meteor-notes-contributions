@@ -63,6 +63,36 @@
   </svg>
 </div>
 
+<div class="row center" id="calendarSmallMobile">
+  <svg width="210" height="132" class="calendar">
+     <g transform="translate(20, 20)">
+       {{#each weeksSmallMobile}}
+         <g transform="translate({{this.translate}}, 0)">
+             {{#each days}}
+                {{#if written.words}}
+                  <rect class="day" width="14" height="14" y="{{this.yCoord}}" fill="{{written.theColor}}" data-written="{{written.words}}" data-date="{{this.displayedDate}}"/>
+                {{else}}
+                  <rect class="day" width="14" height="14" y="{{this.yCoord}}" fill="#eeeeee" data-written="{{written.words}}" data-date="{{this.displayedDate}}"/>
+                {{/if}}
+             {{/each}}
+         </g>
+       {{/each}}
+
+       {{#each monthsSmallMobile}}
+         <text x="{{this.translate}}" y="-5" class="month">{{this.month}}</text>
+       {{/each}}
+
+      <text text-anchor="middle" class="weekDay" dx="0" dy="10">S</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="25">M</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="40">T</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="55">W</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="70">T</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="85">F</text>
+      <text text-anchor="middle" class="weekDay" dx="0" dy="100">S</text>
+     </g>
+  </svg>
+</div>
+
 <!--
   <ul>
       {{#each weeks}}

@@ -42,6 +42,13 @@ Template.calendar.helpers({
     return Contributions.calculateWeeks(weekNo, totalDays, translate);
   },
 
+  weeksSmallMobile: function(){
+    var weekNo = 11;
+    var translate = 160;
+    var totalDays = 77;
+    return Contributions.calculateWeeks(weekNo, totalDays, translate);
+  },
+
   months: function(){
     var totalDays = 365;
     var translate = 750;
@@ -51,6 +58,12 @@ Template.calendar.helpers({
   monthsMobile: function(){
     var totalDays = 112;
     var translate = 210;
+    return Contributions.calculateMonths(totalDays, translate);
+  },
+
+  monthsSmallMobile: function(){
+    var totalDays = 77;
+    var translate = 150;
     return Contributions.calculateMonths(totalDays, translate);
   },
 

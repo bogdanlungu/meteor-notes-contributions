@@ -68,6 +68,10 @@ a svg .rectangle1{
   display: none;
 }
 
+#calendarSmallMobile{
+  display: none;
+}
+
 @media (min-width: 995px) {
   #calendarDesktop {
     display: block;
@@ -80,6 +84,20 @@ a svg .rectangle1{
   }
 
   #calendarMobile {
+    display: block;
+  }
+}
+
+@media (max-width: 360px) {
+  #calendarDesktop {
+    display: none;
+  }
+
+  #calendarMobile {
+    display: none;
+  }
+
+  #calendarSmallMobile{
     display: block;
   }
 }
