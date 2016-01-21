@@ -11,11 +11,12 @@ if(Meteor.isServer){
        var noteDetails = Notes.findOne({_id: note_id});
        if(noteDetails){
          var existingContent = noteDetails.content;
-         var numberOfWordsExistingContent = Contributions.countWords(TagStripper.strip(existingContent));
+         existingContent = existingContent.replace(/(<([^>]+)>)/ig, " ");
+         var numberOfWordsExistingContent = Contributions.countWords(existingContent);
          var numberOfWordsUpdatedContent = Contributions.countWords(content);
          var difference = numberOfWordsUpdatedContent - numberOfWordsExistingContent;
-         // console.log(numberOfWordsExistingContent);
-         // console.log(numberOfWordsUpdatedContent);
+          //console.log(numberOfWordsExistingContent);
+          //console.log(numberOfWordsUpdatedContent);
          if(parseInt(difference) > 0){
            var attributes = {};
            attributes.noteId = note_id;
@@ -35,7 +36,6 @@ if(Meteor.isServer){
            }else{
               Logs.insert(log);
            }
-
          }
        }else{
          console.log('We cannot find a note with this _id!');
