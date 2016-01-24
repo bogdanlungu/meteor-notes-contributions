@@ -8,7 +8,7 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.2.0.2');
-  api.use(['minimongo', 'mongo-livedata', 'templating', 'bogdanlungu:meteor-notes-errors', 'copleykj:tagstripper'], ['client', 'server']);
+  api.use(['minimongo', 'mongo-livedata', 'templating', 'bogdanlungu:meteor-notes-errors'], ['client', 'server']);
   api.use(['iron:router'], ['client','server']);
   api.imply('iron:controller', ['client','server']);
   api.addFiles(['meteor-notes-contributions.js', 'common/router.js'], ['client', 'server']);

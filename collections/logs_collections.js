@@ -15,8 +15,6 @@ if(Meteor.isServer){
          var numberOfWordsExistingContent = Contributions.countWords(existingContent);
          var numberOfWordsUpdatedContent = Contributions.countWords(content);
          var difference = numberOfWordsUpdatedContent - numberOfWordsExistingContent;
-          //console.log(numberOfWordsExistingContent);
-          //console.log(numberOfWordsUpdatedContent);
          if(parseInt(difference) > 0){
            var attributes = {};
            attributes.noteId = note_id;
